@@ -11,23 +11,26 @@ export default class App extends Component {
   constructor(){
     super();
     this.state = {
-      contador:0
+      contador:0,
+      cosas:[]
     };
-  }
-  handleClick() {
-    this.setState({
-      contador: this.state.contador + 1
-    });
   }
 
   render(){
     return(
       <div className="App">
       <header className="App-header">
+        <input value={this.state.cosas} onChange={(e)=>this.setState({cosas:[...this.state.cosas,e.target.value]})} />  
         <Imagen />
         <Titulo  mensaje={"holas"} />
         
-        <Boton handleClick={this.handleClick} />
+        <Boton handleClick={ ()=> this.setState({
+      contador: this.state.contador + 1
+    })} />
+
+      <div>
+        {JSON.stringify(this.state.cosas)}
+      </div>
         <a
           className="App-link"
           href="https://reactjs.org"
